@@ -44,7 +44,7 @@ const App = () => {
   const restart = () => {
     setCurrentLine(0);
     setShowVideo(false); // Hide video when restarting
-    setVideoSrc("/videos/greetings.mp4"); // Reset the video source
+    setVideoSrc("/src/assets/videos/greetings.mp4"); // Reset the video source
     select.play();
   };
 
@@ -101,7 +101,7 @@ const App = () => {
             {!showVideo && (
               <img 
                 className="profile-img" 
-                src="/img/kai.jpg" 
+                src="/src/assets/img/kai.jpg" 
                 alt="Profile" 
                 onClick={handleImageClick} 
               />
