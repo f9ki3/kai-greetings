@@ -38,7 +38,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url('/src/assets/img/bg2.jpg'); /* Replace with your image path */
+  background-image: url('/img/bg2.jpg'); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
