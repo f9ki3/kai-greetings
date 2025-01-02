@@ -11,17 +11,19 @@ const App = () => {
     "Winter may be coming, but today, it’s all sunshine and celebration in honor of you, our one true queen.",
     "Raise your goblet, claim your crown, and let the festivities begin!",
     "Happy Nameday, Kai! May your reign be long, your days bright, and your legacy as unforgettable as the tales of Old Valyria.",
-    "Forever your loyal subject and friend, f9ki3",
+    "Forever your loyal subject and friend, f9ki3 - click the profile picture",
   ];
 
   const [currentLine, setCurrentLine] = useState(0);
   const [showVideo, setShowVideo] = useState(false); // State to control video visibility
+  const [videoSrc, setVideoSrc] = useState("/src/assets/videos/greetings.mp4"); // Initial video source
+
   const select = new Audio("/src/assets/sounds/select.mp3");
 
   const nextLine = () => {
     if (currentLine < greetings.length - 1) {
       setCurrentLine(currentLine + 1);
-      select.play();
+      select.play(); // Play sound with 30% volume
     } else if (currentLine === greetings.length - 1) {
       setShowVideo(false); // Initially set video to not show
       select.play();
@@ -42,14 +44,21 @@ const App = () => {
   const restart = () => {
     setCurrentLine(0);
     setShowVideo(false); // Hide video when restarting
+    setVideoSrc("/src/assets/videos/greetings.mp4"); // Reset the video source
     select.play();
   };
 
-  useEffect(() => {
-    // Play sound when the page reloads
-    const sound = new Audio("/src/assets/sounds/got_song.mp3");
-    sound.play();
+  const handleImageClick = () => {
+    setShowVideo(true); // Show video when the image is clicked
+    setCurrentLine(greetings.length - 1); // Skip directly to the last greeting
+    const videoElement = document.querySelector("video");
+    if (videoElement) {
+      videoElement.volume = 1; // Set video volume to 100%
+    }
+  };
+  
 
+  useEffect(() => {
     const balloonContainer = document.getElementById("balloon-container");
 
     for (let i = 0; i < 30; i++) {
@@ -73,7 +82,14 @@ const App = () => {
     setTimeout(() => {
       balloonContainer.innerHTML = "";
     }, 7000);
-  }, []);
+
+    // Change video source after 9 seconds
+    if (showVideo) {
+      setTimeout(() => {
+        setVideoSrc("https://www.youtube.com/embed/jtKJGtn7Zxo?autoplay=1&controls=0"); // Embed the YouTube link
+      }, 9000); // 9 seconds delay
+    }
+  }, [showVideo]);
 
   return (
     <div className="app">
@@ -81,21 +97,39 @@ const App = () => {
       <div className="content-wrapper">
         <div className="greetings">
           <div className="profile-wrapper">
-            {/* Show profile image until the last line */}
+            {/* Show profile image until the last line or when clicked */}
             {!showVideo && (
-              <img className="profile-img" src="/src/assets/img/kai.jpg" alt="Profile" />
+              <img 
+                className="profile-img" 
+                src="/src/assets/img/kai.jpg" 
+                alt="Profile" 
+                onClick={handleImageClick} 
+              />
             )}
           </div>
-          {greetings[currentLine]}
-          {/* Append video after last line */}
+          {/* Only display greetings if showVideo is false */}
+          {!showVideo && greetings[currentLine]}
+          
+          {/* Show additional greeting above video */}
           {showVideo && (
-            <div className="video-wrapper">
-              <video width="320" height="240" controls>
-                <source src="/src/assets/videos/greetings.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <div className="video-greeting">
+              <p>Happy Birthday Karl Nicolai.</p>
             </div>
           )}
+
+          {/* Embed YouTube video after 9 seconds */}
+          {showVideo && videoSrc && (
+            <div className="video-wrapper">
+              <iframe
+                src={videoSrc}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
+
         </div>
         <div className="buttons">
           <button onClick={prevLine} disabled={currentLine === 0}>
