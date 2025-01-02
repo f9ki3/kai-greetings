@@ -1,0 +1,243 @@
+/* Fire cursor styles */
+body {
+  cursor: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Red_flame_icon.svg'), auto; /* Replace with a fire cursor image URL */
+}
+
+/* Profile image styles */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid orange; /* Orange fire border */
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.6); /* Fire-like glow effect */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+
+/* App wrapper */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  font-family: "Georgia", serif;
+  text-align: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url('/src/assets/img/bg2.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1; /* Ensure content is above the overlay */
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Dim effect with semi-transparent black */
+  z-index: -1; /* Behind content */
+}
+
+
+/* Content wrapper */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Greeting text styles */
+.greetings {
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  word-wrap: break-word;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade-in effect */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade-out effect */
+.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Button styles */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(45deg, #ff4500, #ff8c00);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Flame effect for buttons */
+button:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,69,0,0.5), rgba(255,0,0,0) 60%);
+  opacity: 0.7;
+  transform: scale(0.8);
+  animation: flames 1.5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Button hover effect */
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(255, 69, 0, 0.6);
+}
+
+/* Disabled button */
+button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button:hover:not(:disabled):before {
+  animation-duration: 1s;
+}
+
+/* Flame animation */
+@keyframes flames {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Balloon styles */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 50px; /* Make the balloon wider for a more oval shape */
+  height: 70px; /* Increase the height for an elongated oval shape */
+  background: radial-gradient(circle at bottom, #ffcc00, transparent 60%); /* Golden yellow gradient for a more vivid effect */
+  border-radius: 50% 50% 60% 60%; /* Oval shape with a slight flatter top */
+  animation: float 6s ease-in infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Soft shadow for a more realistic effect */
+  opacity: 0.9; /* Slightly more visible */
+}
+
+/* Random colors for balloons */
+.balloon:nth-child(odd) {
+  background: radial-gradient(circle at bottom, #ffcc00, transparent 60%); /* Gold gradient */
+}
+
+.balloon:nth-child(even) {
+  background: radial-gradient(circle at bottom, #ffd700, transparent 60%); /* Lighter gold gradient */
+}
+
+
+/* Balloon float animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-800px) scale(1.15); /* Slightly larger size at the peak for realism */
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-1000px) scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* Balloon float animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-800px) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-1000px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+/* Media queries for mobile view */
+@media (max-width: 768px) {
+  /* Adjust background position for mobile view */
+  .app {
+    background-position: right center;
+  }
+
+  /* Make sure the greeting text is responsive */
+  .greetings {
+    font-size: 1.2rem;
+    padding: 15px;
+    max-width: 80%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  /* Further adjust for very small screens */
+  .greetings {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
