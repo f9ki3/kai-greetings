@@ -7,7 +7,7 @@ const App = () => {
     "The bells of King’s Landing ring out, the dragons light up the skies, and even the Night King sends his icy regards.",
     "Kai, you are no mere mortal—you are the breaker of chains, the bringer of joy, and the ruler of hearts.",
     "Your wit is sharper than Arya’s Needle, your strength rivals that of Brienne of Tarth, and your grace could make even Daenerys jealous.",
-    "May your nameday be filled with laughter louder than a Dothraki horde, feasts fit for the Great Hall of Winterfell, and a cake so magnificent it could sit upon the Iron Throne itself.",
+    "May your birthday be filled with laughter louder than a Dothraki horde, feasts fit for the Great Hall of Winterfell, and a cake so magnificent it could sit upon the Iron Throne itself.",
     "Winter may be coming, but today, it’s all sunshine and celebration in honor of you, our one true queen.",
     "Raise your goblet, claim your crown, and let the festivities begin!",
     "Happy Nameday, Kai! May your reign be long, your days bright, and your legacy as unforgettable as the tales of Old Valyria.",
